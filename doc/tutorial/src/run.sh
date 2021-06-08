@@ -3,6 +3,8 @@
 source ./pantheon/env.sh
 
 RUN_CLEAN=true
+# NaluWind regression test
+NALU_REG_TEST=nonIsoEdgeOpenJet
 
 if $RUN_CLEAN; then
     echo "----------------------------------------------------------------------"
@@ -11,39 +13,30 @@ if $RUN_CLEAN; then
 
     rm -rf $PANTHEON_RUN_DIR
     mkdir $PANTHEON_RUN_DIR
-    pushd $PANTHEON_RUN_DIR > /dev/null 2>&1
-
-    # use spack to find the location of the installed app
-    SPACK_ASCENT_PATH=`spack find -p ascent`
-    SPACK_HASH_PATH=`echo $SPACK_ASCENT_PATH | awk '{print $NF}'`
-    cp -rf $SPACK_HASH_PATH/examples/ascent/proxies/cloverleaf3d/* .
-    popd
 fi
 
-# --------------------------------------------------------------------
-# BEGIN: EDIT THIS SECTION
-# copy executable and support files to the result directory
-#     this step will vary, depending on the application requirements
+# set up spack env
+# . ${PANTHEON_RUN_DIR}/../spack/share/spack/setup-env.sh
 
+# NaluWind executable variables
+NALU_BIN_DIR=$(spack location -i nalu-wind)/bin
+
+# copy executable and support files
+cp -r ${NALU_BIN_DIR}/* $PANTHEON_RUN_DIR
+cp -r inputs/nalu-wind/${NALU_REG_TEST}/* $PANTHEON_RUN_DIR
 cp run/submit.sh $PANTHEON_RUN_DIR
-# copy new actions file
-cp inputs/ascent/ascent_actions.yaml $PANTHEON_RUN_DIR
 
-# END: EDIT THIS SECTION
-# --------------------------------------------------------------------
-
-# go to run dir and update the submit script
-pushd $PANTHEON_RUN_DIR > /dev/null 2>&1
+# go to run dir and update the submit script and nalu input file locations
+pushd $PANTHEON_RUN_DIR > /dev/null 2>&1 
 sed -i "s/<pantheon_workflow_jid>/${PANTHEON_WORKFLOW_JID}/" submit.sh
 sed -i "s#<pantheon_workflow_dir>#${PANTHEON_WORKFLOW_DIR}#" submit.sh
-sed -i "s#<pantheon_run_dir>#${PANTHEON_RUN_DIR}#" submit.sh
+sed -i "s#<pantheon_run_dir>#${PANTHEON_RUN_DIR}#g" submit.sh
+sed -i "s#<nalu_reg_test>#${NALU_REG_TEST}#g" submit.sh
+sed -i "s#<pantheon_run_dir>#${PANTHEON_RUN_DIR}#" ${NALU_REG_TEST}.yaml
 sed -i "s#<compute_allocation>#${COMPUTE_ALLOCATION}#" submit.sh
-
-# remove existing file
-rm -f ascent_actions.json
 
 # submit the job
 echo "----------------------------------------------------------------------"
 echo "PTN: submitting run ..." 
 echo "----------------------------------------------------------------------"
-bsub submit.sh
+bash submit.sh

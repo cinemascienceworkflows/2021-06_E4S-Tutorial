@@ -5,22 +5,15 @@
 source ./pantheon/env.sh
 
 echo "PTN: Establishing Pantheon workflow directory:"
-echo "     $PANTHEON_WORKFLOW_DIR"
+echo $PANTHEON_WORKFLOW_DIR
 
 PANTHEON_SOURCE_ROOT=$PWD
 
-# these settings allow you to control what gets built ... 
+# these settings allow you to control what gets built ...
 BUILD_CLEAN=true
-INSTALL_SPACK=true
+INSTALL_SPACK=false
 USE_SPACK_CACHE=true
-INSTALL_ASCENT=true
 INSTALL_APP=false
-
-# spack data 
-SPACK_COMMIT=3d7069e03954e5a4042d41c27a75dacd33e52696
-SPACK_NAME=e4s_pantheon
-SPACK_CACHE_URL=https://cache.e4s.io 
-SPACK_E4S_PUB_URL=https://oaciss.uoregon.edu/e4s/e4s.pub
 
 # ---------------------------------------------------------------------------
 #
@@ -30,7 +23,7 @@ SPACK_E4S_PUB_URL=https://oaciss.uoregon.edu/e4s/e4s.pub
 
 START_TIME=$(date +"%r %Z")
 echo ----------------------------------------------------------------------
-echo "PTN: Start time: $START_TIME" 
+echo "PTN: Start time: $START_TIME"
 echo ----------------------------------------------------------------------
 
 # if a clean build, remove everything
@@ -58,47 +51,18 @@ if $INSTALL_SPACK; then
     echo "PTN: installing Spack ..."
     echo ----------------------------------------------------------------------
 
-    pushd $PANTHEON_WORKFLOW_DIR > /dev/null 2>&1
-    git clone https://github.com/spack/spack 
-    pushd spack > /dev/null 2>&1
-    git checkout $SPACK_COMMIT 
-    popd > /dev/null 2>&1
-    popd > /dev/null 2>&1
 fi
 
-if $INSTALL_ASCENT; then
+if $USE_SPACK_CACHE; then
     echo ----------------------------------------------------------------------
-    echo "PTN: building ASCENT ..."
+    echo "PTN: using Spack E4S cache ..."
     echo ----------------------------------------------------------------------
 
-    # copy spack settings
-    cp inputs/spack/spack.yaml $PANTHEON_WORKFLOW_DIR
+else
+    echo ----------------------------------------------------------------------
+    echo "PTN: not using Spack E4S cache for Ascent..."
+    echo ----------------------------------------------------------------------
 
-    pushd $PANTHEON_WORKFLOW_DIR > /dev/null 2>&1
-
-    # activate spack and install Ascent
-    . spack/share/spack/setup-env.sh
-    spack -e . concretize -f 2>&1 | tee concretize.log
-    spack mirror add $SPACK_NAME $SPACK_CACHE_URL
-    wget $SPACK_E4S_PUB_URL
-    spack gpg trust e4s.pub
-    module load patchelf
-
-    if $USE_SPACK_CACHE; then
-        echo ----------------------------------------------------------------------
-        echo "PTN: using Spack E4S cache ..."
-        echo ----------------------------------------------------------------------
-
-        time spack -e . install 
-    else
-        echo ----------------------------------------------------------------------
-        echo "PTN: not using Spack E4S cache for Ascent..."
-        echo ----------------------------------------------------------------------
-
-        time spack -e . install --no-cache
-    fi
-
-    popd
 fi
 
 # build the application and parts as needed
@@ -107,12 +71,11 @@ if $INSTALL_APP; then
     echo "PTN: installing app ..."
     echo ----------------------------------------------------------------------
 
-    source $PANTHEON_SOURCE_ROOT/setup/install-app.sh
 fi
 
 END_TIME=$(date +"%r %Z")
 echo ----------------------------------------------------------------------
-echo "PTN: statistics" 
+echo "PTN: statistics"
 echo "PTN: start: $START_TIME"
 echo "PTN: end  : $END_TIME"
 echo ----------------------------------------------------------------------
