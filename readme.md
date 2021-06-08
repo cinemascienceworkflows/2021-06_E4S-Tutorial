@@ -1,6 +1,6 @@
 ![release](https://pantheonscience.github.io/states/release.png)
 
-# ExaWind-NaluWind workflow with post-processing
+# Tutorial for ExaWind-NaluWind workflow with post-processing
 
 <p align="center">
     <img width="750" src="doc/img/workflow.png"/>
@@ -27,8 +27,7 @@ The embedded example run is derived from a regression test, and can be found in 
 The workflow does the following:
 
 - Creates a [Pantheon](http://pantheonscience.org/) environment and build location
-- Clones a specific commit of [Spack](https://github.com/spack/spack)
-- Uses `spack` to build [ExaWind-NaluWind](https://nalu-wind.readthedocs.io/en/latest/)
+- Uses `spack` to find an installed version of [ExaWind-NaluWind](https://nalu-wind.readthedocs.io/en/latest/)
 - Runs a regression test, which produces output readable by [ParaView](https://paraview.org)
 - Runs a `ParaView` (`pvpython`) script to produce a `Cinema` database
 - Installs a `Cinema` viewer, then packages up the results
@@ -36,7 +35,8 @@ The workflow does the following:
 
 ## Using this repository
 
-First, clone the repository, then:
+This repository is specifcally designed to run on a virtual machine that has ExaWind/nalu-wind installd, and includes only the scripts needed to run that installed version. 
 
-- Edit the `bootstrap.env` file to include your compute allocation ID and the base path where installs and results should go.
+To us this repository, clone it and then:
+
 - Execute the workflow by typing `./execute`. Take a look at this file to see the steps that are executed, and where to look for more detail.
