@@ -9,6 +9,7 @@ echo "----------------------------------------------------------------------"
 # --------------------------------------------------------------------
 # copy python (paraview) and submit scripts to the result directory
 cp postprocess/volume_rendering_cdb_extract.py $PANTHEON_RUN_DIR
+cp postprocess/contours_image_cdb_extract.py $PANTHEON_RUN_DIR
 cp postprocess/post_submit.sh $PANTHEON_RUN_DIR
 
 # go to run dir and update the submit script

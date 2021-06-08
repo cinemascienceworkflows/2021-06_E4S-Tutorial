@@ -11,7 +11,8 @@
 spack load paraview+python3
 
 PANTHEON_RUN_DIR=<pantheon_run_dir>
-SCRIPT=$PANTHEON_RUN_DIR/volume_rendering_cdb_extract.py
+# SCRIPT=$PANTHEON_RUN_DIR/volume_rendering_cdb_extract.py
+SCRIPT=$PANTHEON_RUN_DIR/contours_image_cdb_extract.py
 INPUT=$PANTHEON_RUN_DIR
 CDB=$PANTHEON_RUN_DIR/cinema_databases/$PANTHEON_CDB
 
