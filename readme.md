@@ -3,7 +3,7 @@
 # ExaWind-NaluWind workflow with post-processing
 
 <p align="center">
-    <img width="750" src="doc/workflow.png"/>
+    <img width="750" src="doc/img/workflow.png"/>
 </p>
 <p align="center">Diagram of the workflow in this example.</p>
 
