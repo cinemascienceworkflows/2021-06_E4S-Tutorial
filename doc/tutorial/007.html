@@ -7,30 +7,24 @@
 <div class="tutorial"> 
 <h3>10. Changing the visualization</h3>
 
-The in-situ visualization in this workflow is managed by Ascent, which 
-looks for a vis definition in the <b><code>ascent_actions.yaml</code></b> 
-file. Therefore, executing with a different 
-<b><code>ascent_actions.yaml</code></b> file will
-change the visualization that is output to the cinema database. 
+The visualization in this example is done in a post-processing step by
+a ParaView python script. There are two examples of visualizations in this repository,
+each of which outputs a different type of image into the Cinema database. Executing
+a different script therefore creates a different visualization.
 
-To change the visualization, copy a different file to the run directory:
+To change the visualization, run a different script in the `postprocess/post_submit.sh` script
+by choosing which script is uncommented. These images show the different visualizations: 
 
-<pre>
-<code class="cutpaste">
-    pushd ~/pantheon/tutorial/inputs/ascent
-    cp ascent_actions_iso.yaml ascent_actions.yaml
-    popd
-</pre>
-</code>
+You can also edit the <code>postprocessing/post_submit.sh</code> script by commenting  
 
 <center>
 <table width="90%">
     <tr>
-        <td style="text-align:center;"><img src="img/cinema.png" height="150px"></img></td>
-        <td style="text-align:center;"><img src="img/iso.png" height="150px"></img></td>
+        <td style="text-align:center;"><img src="img/exawind-volume.png" height="150px"></img></td>
+        <td style="text-align:center;"><img src="img/exawind-contour.png" height="150px"></img></td>
     </tr>
     <tr>
-        <td style="text-align:center;">Original visualization</td>
+        <td style="text-align:center;">Volume visualization</td>
         <td style="text-align:center;">Isosurface visualization</td>
     </tr>
 </table>
@@ -38,34 +32,17 @@ To change the visualization, copy a different file to the run directory:
 
 <br>&nbsp</br>
 
-You can also edit the <code>ascent_actions.yaml</code> file to 
-change the number of images that are written out, by changing the values for the following variables. This will increase the runtime of the workflow, so only change them if you're OK with a longer run time:
-
-<ul>
-    <li><b><code>phi</code></b> controls the number of positions around the vertical axis.</li>
-    <li><b><code>theta</code></b> controls the number of positions around the horixontal axis.</li>
-</ul>
+You can also edit the <code>postprocessing/post_submit.sh</code> script by commenting  
+out one of the lines in the script that defines the <code>VISUALIZATION</code> variable:
 
 <pre>
 <code>
--
-  action: "add_scenes"
-  scenes:
-    s1:
-      plots:
-        p1:
-          type: "volume"
-          field: "energy"
-          min_value: 1
-          max_value: 3
-      renders:
-        r1:
-          image_width: 512
-          image_height: 512
-          type: "cinema"
-          phi: 1
-          theta: 1
-          db_name: "pantheon.cdb"
+
+# uncomment one of the following lines to control the type of
+# visualization created by this script
+# VISUALIZATION=volume_rendering_cdb_extract.py
+VISUALIZATION=contours_image_cdb_extract.py
+
 </code>
 </pre>
 
