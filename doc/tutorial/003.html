@@ -1,0 +1,65 @@
+<html>
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>6. Overview of Steps</h3> 
+
+The <code><a href="src/install-deps.sh">setup/install-deps.sh</a></code> script:
+<ul>
+    <li>create work area</li>
+    <li>install spack (if needed)</li>
+    <li>install dependencies</li>
+    <ul>
+        <li>Optionally use the <b>E4S</b> cache to
+            significantly decrease install times.</li>
+        <li>Note that this is a <b>critical</b> step
+            when working on target HPC systems, as build
+            times are significantly reduced when using a 
+            cached build.</li>
+    </ul>
+    <li>optionally install an application</li>
+</ul>
+
+The <code><a href="src/run.sh">run/run.sh</a></code> script:
+<ul>
+    <li>creates a run directory</li>
+    <li>copies files from the <code>input</code> directory</li>
+    <li>submits the script to a job queue</li>
+</ul>
+
+<p>
+</p>
+
+<br>
+
+The <code><a href="src/postprocess.sh">postprocess/postprocess.sh</a></code> script:
+<ul>
+    <li>installs several viewers alongside the cinema databases</li>
+    <li>packages up the cinema databases and the viewers</li>
+</ul>
+
+
+The <code><a href="src/validate.sh">validate/validate.sh</a></code> script:
+<ul>
+    <li>checks the output against known results</li>
+</ul>
+
+
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="002.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="005.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>

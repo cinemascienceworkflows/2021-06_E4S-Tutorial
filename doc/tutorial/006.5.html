@@ -1,0 +1,52 @@
+<html>
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>9. Changing the Timesteps/Interval</h3>
+
+Edit the file in <code>inputs/cloverleaf/clover.in</code>. The following 
+variables control the number of timesteps and the frequency of output. 
+Changing them will alter the dataset that is created:
+<ul>
+    <li><b><code>end_step</code></b> controls the end timestep ID for the simulation.</li>
+    <ul>
+        <li>Change this value to <b>100</b></li>
+    </ul>
+    <li><b><code>visit_frequency</code></b> controls the interval at which the Cinema output will be written.</li>
+    <ul>
+        <li>Do not change this value now, but you can experiment with it later.</li>
+    </ul>
+</ul>
+
+<pre>
+<code>
+ ...
+ ymax=10.0
+ zmax=10.0
+ initial_timestep=0.04
+ max_timestep=0.04
+ end_step=50            (change this value to 100)
+ test_problem 1
+
+ visit_frequency=10
+ ...
+</code>
+</pre>
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="006.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="007.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>

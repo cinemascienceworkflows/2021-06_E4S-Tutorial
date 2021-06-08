@@ -1,0 +1,85 @@
+<html>
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>10. Changing the visualization</h3>
+
+The in-situ visualization in this workflow is managed by Ascent, which 
+looks for a vis definition in the <b><code>ascent_actions.yaml</code></b> 
+file. Therefore, executing with a different 
+<b><code>ascent_actions.yaml</code></b> file will
+change the visualization that is output to the cinema database. 
+
+To change the visualization, copy a different file to the run directory:
+
+<pre>
+<code class="cutpaste">
+    pushd ~/pantheon/tutorial/inputs/ascent
+    cp ascent_actions_iso.yaml ascent_actions.yaml
+    popd
+</pre>
+</code>
+
+<center>
+<table width="90%">
+    <tr>
+        <td style="text-align:center;"><img src="img/cinema.png" height="150px"></img></td>
+        <td style="text-align:center;"><img src="img/iso.png" height="150px"></img></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">Original visualization</td>
+        <td style="text-align:center;">Isosurface visualization</td>
+    </tr>
+</table>
+</center>
+
+<br>&nbsp</br>
+
+You can also edit the <code>ascent_actions.yaml</code> file to 
+change the number of images that are written out, by changing the values for the following variables. This will increase the runtime of the workflow, so only change them if you're OK with a longer run time:
+
+<ul>
+    <li><b><code>phi</code></b> controls the number of positions around the vertical axis.</li>
+    <li><b><code>theta</code></b> controls the number of positions around the horixontal axis.</li>
+</ul>
+
+<pre>
+<code>
+-
+  action: "add_scenes"
+  scenes:
+    s1:
+      plots:
+        p1:
+          type: "volume"
+          field: "energy"
+          min_value: 1
+          max_value: 3
+      renders:
+        r1:
+          image_width: 512
+          image_height: 512
+          type: "cinema"
+          phi: 1
+          theta: 1
+          db_name: "pantheon.cdb"
+</code>
+</pre>
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="006.5.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="007.5.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>

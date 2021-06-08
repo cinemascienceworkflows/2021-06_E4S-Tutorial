@@ -1,0 +1,79 @@
+
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>2. Overview of Pantheon</h3>
+
+The <a href="http://pantheonscience.org">Pantheon</a> project is a home for examples of reproducible workflows for 
+scientific computing. 
+
+A few terms to note:
+
+<ul>
+    <li>A <b>Project</b> is a collection of workflows with a well-defined scope and goal, defined by a common workflow template.</li>
+    <li>A <b>Template</b> is a workflow pattern. </li>
+    <li>A <b>Workflow</b> is a reproducible set of operations, based on a template. A workflow is defined by a URL to a git repository and a specific git commit. 
+</ul>
+
+This tutorial will demonstrate workflows that are part of the <b><a href="http://pantheonscience.org/e4s">Cinema E4S</a></b> project.
+Each of these workflows uses open source science codes to create Cinema databases as output,
+either through in-situ or post-processing methods.
+
+<h3>Pantheon States</h3>
+
+Pantheon defines several states for a workflow:
+
+<ul>
+    <li><b>Release</b>. This is a supported workflow, expected to work.</li>
+    <li><b>Development</b>. This is a supported workflow, in development, but on its 
+        way to <b>Release</b>.</li>
+    <li><b>Experimental</b>. This workflow is provided as a record or example, 
+        and may not work in all cases.</li>
+</ul>
+
+<h3>Pantheon Metadata</h3>
+
+A version of pantheon defines a set of metadata, typically included
+in a workflow in a <code>pantheon.yaml</code> file. This is the current
+metadata required by a project:
+<pre>
+<code>
+pantheon:
+    pantheon_version: 1.2 
+    pantheon_state: string
+
+project:
+    project_name: string
+    project_website: string
+
+workflow:
+    workflow_name: string
+    workflow_desc: string 
+    workflow_cinema-db: string
+    workflow_workflow_app: string
+    workflow_workflow_in-situ: string
+    workflow_workflow_post-processing: string
+           
+contact: 
+    contact_name: string  
+    contact_email: string
+</code>
+</pre>
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="000.25.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="001.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>5. The <code>execute</code> script</h3>
+
+The place to start investigating a workflow 
+is the <code>execute</code> script,
+which has the steps that the workflow will execute:
+<ul>
+    <li>setup (install)</li>
+    <li>run the workflow application</li>
+    <li>wait for completion of the run</li>
+    <li>postprocess results</li>
+    <li>wait for completion of postprocess</li>
+    <li>validate results</li>
+</ul>
+
+The <code>execute</code> script shows the steps that are run.
+In the case of a workflow run on a target HPC system, the script
+would look like this:
+
+<pre>
+<code>
+#!/bin/bash
+
+source bootstrap.env
+source pantheon/env.sh
+
+./sbang.sh setup/install-deps.sh
+./sbang.sh run/run.sh
+./sbang.sh run/wait_for_completion.sh
+./sbang.sh postprocess/postprocess.sh
+./sbang.sh postprocess/wait_for_completion.sh
+./sbang.sh validate/validate.sh
+</code>
+</pre>
+
+When run on a supercomputer, the steps are executed
+by submitting an application job to a queue. The 
+<code>wait_for_completion</code> steps then monitor the 
+queue to provide feedback on the state of the job. This allows
+the workflow to run continuously until completion.
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="001.5.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="003.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>

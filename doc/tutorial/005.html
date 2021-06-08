@@ -1,0 +1,52 @@
+<html>
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>7. Virtual Machine Example</h3> 
+
+The example for this tutorial has been altered to run on the tutorial
+VM, but it is adapted from an HPC example. The next thing we will do is
+run the workflow, which will:
+<ul>
+    <li>Create a work directory</li>
+    <li>Copy files into the work directory</li>
+    <li>Run the simulation, creating a Cinema database in-situ,
+        according to several files in the workflow.</li>
+</ul>
+
+Execute the workflow, and watch the shell for output during the run:
+<pre>
+<code class="cutpaste">
+    cd ~/pantheon/tutorial
+    ./execute 
+
+</code>
+</pre>
+
+After the simulation is done, you can look at the results:
+<pre>
+<code class="cutpaste">
+    pushd ~/pantheon/work/pantheon/E4S/Ascent_Miniapp_Workflow/results
+    firefox cinema_databases/cinema_view.html 
+    popd
+
+</code>
+</pre>
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="003.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="006.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>

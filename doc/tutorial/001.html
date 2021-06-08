@@ -1,0 +1,63 @@
+
+<head>
+<link rel="stylesheet" href="tutorial.css">
+</head>
+
+<body>
+<div class="tutorial"> 
+<h3>3. Running the tutorial examples</h3>
+
+Using this tutorial, we will run a Pantheon workflow that runs 
+a mini scientific application 
+(<a href="https://github.com/UK-MAC/CloverLeaf3D">cloverleaf3d</a>),
+creates a <a href="https://www.cinemascience.org">Cinema</a> 
+database in-situ (while the simulation is running), through the 
+<a href="https://github.com/Alpine-DAV/ascent">Ascent</a> infrastructure,
+as shown in the diagram of the project's template below.
+
+<br>&nbsp</br>
+<center>
+<img src="img/diagram_small.png"></img>
+</center>
+
+<h3>Set up tutorial environment</h3>
+Run the following command. This sets up a few things in the VM environment specific to this tutorial.
+
+<pre>
+<code class="cutpaste">
+    source ~/pantheon/setup-jupyter.sh
+    jupyter trust ~/pantheon/data/full/cinema.ipynb
+</code>
+</pre>
+
+<h3>Example results</h3>
+
+These examples show what the results will look like in a
+jupyter notebook:
+<pre>
+<code class="cutpaste">
+    jupyter notebook ~/pantheon/data/full/cinema.ipynb
+</code>
+</pre>
+
+This is what it looks like using the Cinema browser viewer:
+<pre>
+<code class="cutpaste">
+    firefox ~/pantheon/data/full/cinema_view.html
+</code>
+</pre>
+
+<center>
+<table class="navigate">
+<tr><td>&nbsp</td></tr>
+<tr>
+    <td><a href="000.5.html"><< Prev</a></td>
+    <td width=75%><a href="index.html">Home</a></td>
+    <td><a href="001.5.html">Next >></a></td>
+</tr>
+</table>
+</center>
+
+</div>
+</body>
+</html>
