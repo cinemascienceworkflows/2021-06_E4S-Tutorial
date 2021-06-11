@@ -14,8 +14,8 @@ PANTHEON_RUN_DIR=<pantheon_run_dir>
 
 # uncomment one of the following lines to control the type of
 # visualization created by this script
-VISUALIZATION=volume_rendering_cdb_extract.py
-# VISUALIZATION=contours_image_cdb_extract.py
+VISUALIZATION=contours_image_cdb_extract.py
+# VISUALIZATION=volume_rendering_cdb_extract.py
 
 INPUT=$PANTHEON_RUN_DIR
 CDB=$PANTHEON_RUN_DIR/cinema_databases/$PANTHEON_CDB
