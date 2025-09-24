@@ -1,4 +1,4 @@
-t![archive](https://pantheonscience.github.io/states/archive.png)
+![archive](https://pantheonscience.github.io/states/archive.png)
 
 # Tutorial for ExaWind-NaluWind workflow with post-processing
 
